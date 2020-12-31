@@ -1,3 +1,2 @@
 Manifest-Version: 1.0
-Main-Class: uk.toadl3ss.NewYearRPC.Main
 

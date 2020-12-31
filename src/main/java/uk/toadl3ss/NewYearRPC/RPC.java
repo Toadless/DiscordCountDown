@@ -29,7 +29,7 @@ public class RPC {
             }
         };
         ScheduledExecutorService exec = Executors.newSingleThreadScheduledExecutor();
-        exec.scheduleAtFixedRate(updater, 0, 1, TimeUnit.MINUTES);
+        exec.scheduleAtFixedRate(updater, 0, 1, TimeUnit.SECONDS);
         new Thread(() -> {
             while (!Thread.currentThread().isInterrupted()) {
                 lib.Discord_RunCallbacks();
@@ -40,6 +40,16 @@ public class RPC {
         }, "RPC-Callback-Handler").start();
     }
     public static void initPresence(DiscordRichPresence presence, int currentYear, int nextYear, DiscordRPC lib) {
+        if (currentYear >= nextYear) {
+            presence.startTimestamp = 1;
+            presence.endTimestamp = 1;
+            presence.details = "Happy new year!!!";
+            presence.state = "Its 2021";
+            presence.largeImageKey = "firework";
+            presence.largeImageText = "Woot! Woot!";
+            lib.Discord_UpdatePresence(presence);
+            return;
+        }
         String pattern = "H:m:s";
         SimpleDateFormat patternFormat = new SimpleDateFormat(pattern);
         String date = patternFormat.format(new Date());
