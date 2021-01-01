@@ -40,11 +40,14 @@ public class RPC {
         }, "RPC-Callback-Handler").start();
     }
     public static void initPresence(DiscordRichPresence presence, int currentYear, int nextYear, DiscordRPC lib) {
-        if (currentYear >= nextYear) {
+        String patterny = "yyyy";
+        SimpleDateFormat patternFormaty = new SimpleDateFormat(patterny);
+        String datey = patternFormaty.format(new Date());
+        if (Integer.parseInt(datey) == nextYear) {
             presence.startTimestamp = 1;
             presence.endTimestamp = 1;
             presence.details = "Happy new year!!!";
-            presence.state = "Its 2021";
+            presence.state = "Its" + " " + nextYear;
             presence.largeImageKey = "firework";
             presence.largeImageText = "Woot! Woot!";
             lib.Discord_UpdatePresence(presence);

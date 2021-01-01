@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimeZone;
 
 public class getMillisOfSilvester {
     public static long getEndYearDate(int year)  {
@@ -11,7 +12,7 @@ public class getMillisOfSilvester {
         String dateString = "/01/01 00:00:00";
 
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        // dateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
+        dateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
 
         try {
             Date silvesterThisYear = dateFormat.parse(adjustedYear + dateString);
